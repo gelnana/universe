@@ -1,0 +1,3 @@
+systems = ["x86_64-linux"]
+include = ["nixosConfigurations.ukaliq", "nixosConfigurations.uppik"]
+substituters = ["https://gelnana.cachix.org"]

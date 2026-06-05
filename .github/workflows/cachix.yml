@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+  id-token: write
+
+jobs:
+  atelier:
+    uses: stepbrobd/atelier/.github/workflows/discover.yaml@master
+    secrets: inherit
+    with:
+      extra-conf: |
+        extra-substituters = https://gelnana.cachix.org
+        extra-trusted-public-keys = gelnana.cachix.org-1:8YX44+Ljcz5c2UZYyVcltAzZUUcACnd2aopstzFy9gs=
+        experimental-features = nix-command flakes pipe-operators

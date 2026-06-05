@@ -1,0 +1,2 @@
+disabled = [19]
+ignore = [".direnv"]

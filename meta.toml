@@ -1,0 +1,96 @@
+tailscale_domain = "tail02b28f.ts.net"
+
+[hosts.ukaliq]
+host_pubkey = "AAAAC3NzaC1lZDI1NTE5AAAAIPSgul2sVe9tZDZymYQGbsUpZCTwKZwuwYB6ypaYAtV8"
+
+[hosts.uppik]
+host_pubkey = "AAAAC3NzaC1lZDI1NTE5AAAAIFMbAErMVJxtpHbLLELqhO2h1tLDgmXBEXXdV+3Tbn2x"
+
+[hosts.sila]
+host_pubkey = "AAAAC3NzaC1lZDI1NTE5AAAAIOxMjY7YQY4SNNZaTb6rdJc4oj4lrBKrXnYR+oTAVHzO"
+
+[hosts.natseq]
+host_pubkey = "AAAAC3NzaC1lZDI1NTE5AAAAIP0oclyYrqxyWfg+BPkNOfbxk34EJHEK8BXbXevSs/Jq"
+
+[syncthing.ukaliq]
+id = "6PS7FSX-TDQMCTE-CCIIBB4-FROFGTI-COBKJST-CVAEAT4-6IWK2ZR-IBDYUAS"
+users = ["chloe"]
+role = "peer"
+
+[syncthing.uppik]
+id = "YSAP3NL-X6NAT52-MQCV76C-65YNOUA-FYDWHMT-5VKDYXZ-DQMZPTZ-6EAU3AC"
+users = ["chloe"]
+role = "peer"
+
+[syncthing.noteair3c]
+id = "IWPQX3P-IHVCFT5-PD7MN6L-WC2JTM7-TMXMTMD-Z5TCBQN-A6L2DWU-RT677AO"
+users = ["chloe"]
+role = "client"
+
+[ollama.ukaliq]
+port = "11434"
+
+[perplexica.ukaliq]
+port = "3500"
+caddy_name = "ai"
+description = "Research assistant"
+icon = "perplexica"
+
+[calibre-web.natseq]
+port = "8083"
+caddy_name = "books"
+description = "Ebook library"
+icon = "calibre-web"
+
+[nfs.natseq]
+
+[radicale.natseq]
+port = "5232"
+caddy_name = "calendar"
+description = "Calendar and contacts"
+icon = "radicale"
+
+[homepage.natseq]
+port = "8082"
+caddy_name = "hub"
+
+[tclip.natseq]
+caddy_name = "paste"
+description = "Paste service"
+icon = "tailscale"
+
+[pihole.sila]
+port = "8080"
+caddy_name = "pihole"
+description = "DNS server and ad blocker"
+icon = "pihole"
+
+[meilisearch.natseq]
+port = "7700"
+caddy_name = "meili"
+description = "Search index"
+icon = "meilisearch"
+
+[paperless-ngx.natseq]
+port = "28981"
+caddy_name = "docs"
+description = "Document management"
+icon = "paperless-ngx"
+
+[searxng.natseq]
+port = "8888"
+caddy_name = "search"
+description = "Search engine"
+icon = "searxng"
+
+[suwayomi.natseq]
+port = "4567"
+caddy_name = "manga"
+description = "Manga reader"
+icon = "suwayomi"
+
+[users.chloe]
+ssh_keys = ["AAAAC3NzaC1lZDI1NTE5AAAAID/0P6kexDpLdcRM8Uv/qzfp7pKZF8zWph7Luk0km6ke"]
+
+[users.emrys]
+ssh_keys = ["AAAAC3NzaC1lZDI1NTE5AAAAID/0P6kexDpLdcRM8Uv/qzfp7pKZF8zWph7Luk0km6ke"]

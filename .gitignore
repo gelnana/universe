@@ -1,0 +1,6 @@
+result
+.direnv
+.devenv
+*.qcow2
+.vscode
+.pre-commit-config.yaml
