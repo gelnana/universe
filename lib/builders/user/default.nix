@@ -32,7 +32,8 @@
     daemons ? {},
   }: let
     normal = lib.filterAttrs (_: u: u.role != "system") records;
-    mod = {
+  in [
+    {
       pkgs,
       config,
       self,
@@ -80,6 +81,6 @@
           daemons
         );
       };
-    };
-  in [mod];
+    }
+  ];
 }
