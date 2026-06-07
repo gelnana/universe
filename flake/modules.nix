@@ -4,7 +4,6 @@
   ...
 }: let
   inherit (inputs) haumea;
-  inherit (inputs.haumea.lib) matchers loaders;
   inherit (lib.my) utils;
 in {
   config._module.args = let
