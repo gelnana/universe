@@ -37,7 +37,20 @@ in
         self',
         ...
       }: let
-        # home-manager config per user
+        # specialArgs for nixos module evaluation
+        specialArgs = {
+          inherit inputs inputs' self self' meta;
+          # host settings + context for modules
+          host =
+            settings
+            // {
+              inherit name homes;
+              # generate alias to retrieve facter detected system attributes
+              detect = config.flake.nixosConfigurations.${name}.config.specs.detect;
+              users = lib.filterAttrs (_: u: u.role != "system") records;
+            };
+        };
+        # home-manager config per user w/ tagged modules
         homes = builders.user.mkHomes {
           inherit (settings) tags version;
           inherit inputs' inputs records;
@@ -46,18 +59,6 @@ in
               tags = userTags;
               inherit (settings) system;
             }).home;
-        };
-        # specialArgs for nixos module evaluation
-        specialArgs = {
-          inherit inputs inputs' self self' meta;
-          # host settings + context for modules (name, homes, users)
-          host =
-            settings
-            // {
-              inherit name homes;
-              detect = config.flake.nixosConfigurations.${name}.config.specs.detect;
-              users = lib.filterAttrs (_: u: u.role != "system") records;
-            };
         };
       in
         builders.host.evalHost {

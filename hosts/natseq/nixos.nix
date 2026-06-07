@@ -1,4 +1,5 @@
-_: {
+{modulesPath, ...}: {
+  imports = [(modulesPath + "/profiles/qemu-guest.nix")];
   networking = {
     interfaces.ens18.ipv4.addresses = [
       {
