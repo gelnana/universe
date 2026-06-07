@@ -38,7 +38,7 @@
     inherit settings specialArgs homes pkgs;
     nixosModules = super.modules {
       inherit (host) nixos;
-      inherit name settings pkgs;
+      inherit name settings overlays nixcfg;
       modules =
         hardware
         ++ selected.nixos

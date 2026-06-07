@@ -1,26 +1,27 @@
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption;
+  t = lib.types;
 in {
   home = _: {
     options.sync.folders = mkOption {
-      type = types.attrsOf (types.either
-        (types.enum ["staggered" "trashcan"])
-        (types.submodule ({name, ...}: {
+      type = t.attrsOf (t.either
+        (t.enum ["staggered" "trashcan"])
+        (t.submodule ({name, ...}: {
           options = {
             id = mkOption {
-              type = types.nullOr types.str;
+              type = t.nullOr t.str;
               default = null;
             };
             path = mkOption {
-              type = types.str;
+              type = t.str;
               default = "~/${name}";
             };
             versioning = mkOption {
-              type = types.nullOr (types.enum ["staggered" "trashcan"]);
+              type = t.nullOr (t.enum ["staggered" "trashcan"]);
               default = null;
             };
             devices = mkOption {
-              type = types.nullOr (types.listOf (types.either types.str types.attrs));
+              type = t.nullOr (t.listOf (t.either t.str t.attrs));
               default = null;
             };
           };
