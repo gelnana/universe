@@ -1,23 +1,24 @@
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption;
+  t = lib.types;
 in {
   nixos = {config, ...}: {
     options.persist = {
       path = mkOption {
-        type = types.str;
+        type = t.str;
         default = "/persist";
       };
       storage = {
         path = mkOption {
-          type = types.str;
+          type = t.str;
           default = "${config.persist.path}/storage";
         };
         files = mkOption {
-          type = types.listOf (types.either types.str types.attrs);
+          type = t.listOf (t.either t.str t.attrs);
           default = [];
         };
         directories = mkOption {
-          type = types.listOf (types.either types.str types.attrs);
+          type = t.listOf (t.either t.str t.attrs);
           default = [];
         };
       };

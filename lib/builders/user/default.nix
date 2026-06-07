@@ -38,40 +38,48 @@
       self,
       ...
     }: {
-      users.groups = lib.mapAttrs (_: _: {}) (normal // daemons);
-      users.users =
-        lib.mapAttrs (name: u: super.account name u pkgs config.groups) normal
-        // lib.mapAttrs (name: cfg: super.daemon name cfg pkgs []) daemons;
+      options.groups = lib.mkOption {
+        description = "user groups to collect";
+        default = [];
+        type = lib.types.listOf lib.types.str;
+      };
 
-      # service specific directories to persist
-      persist.storage.directories = lib.concatLists (
-        lib.mapAttrsToList (name: cfg:
-          lib.optional (cfg.dir != null) {
-            directory =
-              if cfg.dir.path != null
-              then cfg.dir.path
-              else "/var/lib/${name}";
-            user = name;
-            group = name;
-            mode = cfg.dir.mode;
-          })
-        daemons
-      );
+      config = {
+        users.groups = lib.mapAttrs (_: _: {}) (normal // daemons);
+        users.users =
+          lib.mapAttrs (name: u: super.account name u pkgs config.groups) normal
+          // lib.mapAttrs (name: cfg: super.daemon name cfg pkgs []) daemons;
 
-      # any secrets used by service
-      age.secrets = lib.mergeAttrsList (
-        lib.mapAttrsToList (name: cfg:
-          lib.listToAttrs (map (s: {
-              name = s;
-              value = {
-                rekeyFile = self + "/secrets/master/${s}.age";
-                owner = name;
-                mode = "0400";
-              };
+        # service specific directories to persist
+        persist.storage.directories = lib.concatLists (
+          lib.mapAttrsToList (name: cfg:
+            lib.optional (cfg.dir != null) {
+              directory =
+                if cfg.dir.path != null
+                then cfg.dir.path
+                else "/var/lib/${name}";
+              user = name;
+              group = name;
+              mode = cfg.dir.mode;
             })
-            cfg.secrets))
-        daemons
-      );
+          daemons
+        );
+
+        # any secrets used by service
+        age.secrets = lib.mergeAttrsList (
+          lib.mapAttrsToList (name: cfg:
+            lib.listToAttrs (map (s: {
+                name = s;
+                value = {
+                  rekeyFile = self + "/secrets/master/${s}.age";
+                  owner = name;
+                  mode = "0400";
+                };
+              })
+              cfg.secrets))
+          daemons
+        );
+      };
     };
   in [mod];
 }
