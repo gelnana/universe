@@ -54,9 +54,9 @@ in
         homes = builders.user.mkHomes {
           inherit (settings) tags version;
           inherit inputs' inputs records;
-          select = userTags:
+          select = selected:
             (builders.select modules {
-              tags = userTags;
+              tags = selected;
               inherit (settings) system;
             }).home;
         };
