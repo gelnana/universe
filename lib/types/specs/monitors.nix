@@ -5,7 +5,6 @@ lib.mkOption {
     options = {
       name = lib.mkOption {
         type = lib.types.str;
-        description = "output name (e.g. eDP-1)";
       };
       scale = lib.mkOption {
         type = lib.types.float;
