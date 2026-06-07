@@ -4,13 +4,13 @@
   nixos = {
     config,
     pkgs,
-    self',
+    self,
     ...
   }: {
     persist.storage.directories = ["/var/lib/caddy"];
 
     age.secrets.caddy-tailscale-auth = {
-      rekeyFile = self' + "/secrets/master/caddy-tailscale-auth.age";
+      rekeyFile = self + "/secrets/master/caddy-tailscale-auth.age";
       mode = "0400";
       owner = "caddy";
     };

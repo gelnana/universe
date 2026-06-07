@@ -40,7 +40,6 @@ _: {inputs, ...}: {
         inputs.disko.packages.${system}.disko
         pkgs.cachix
         pkgs.nixos-anywhere
-        pkgs.taplo
         # keep-sorted end
       ];
     };

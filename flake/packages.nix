@@ -1,6 +1,6 @@
 _: {
-  config,
   inputs,
+  nixcfg,
   ...
 }: let
   inherit (inputs.haumea.lib) load matchers;
@@ -10,11 +10,11 @@ in {
     prev = inputs'.nixpkgs.legacyPackages;
     stable = import inputs.nixpkgs {
       inherit (prev) system;
-      config.allowUnfreePredicate = config.internal.unfree.predicate;
+      config = nixcfg;
     };
     unstable = import inputs.nixpkgs-unstable {
       inherit (prev) system;
-      config.allowUnfreePredicate = config.internal.unfree.predicate;
+      config = nixcfg;
     };
     # custom haumea loader to apply callPackage
     call = path: stable.callPackage path {inherit prev inputs unstable;};

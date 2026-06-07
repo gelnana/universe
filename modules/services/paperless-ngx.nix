@@ -2,7 +2,7 @@
   tags = ["paperless-ngx"];
   nixos = {
     config,
-    self',
+    self,
     meta,
     host,
     ...
@@ -13,7 +13,7 @@
     persist.storage.directories = ["/var/lib/paperless"];
 
     age.secrets.paperless-admin-password = {
-      rekeyFile = self' + "/secrets/master/paperless-admin-password.age";
+      rekeyFile = self + "/secrets/master/paperless-admin-password.age";
       owner = "paperless";
       mode = "0400";
     };

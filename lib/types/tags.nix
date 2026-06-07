@@ -4,12 +4,12 @@ lib.mkOption {
     options = {
       include = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        description = "Traits to select for.";
+        description = "traits to select for.";
         default = [];
       };
       exclude = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        description = "Traits to remove.";
+        description = "traits to remove.";
         default = [];
       };
     };

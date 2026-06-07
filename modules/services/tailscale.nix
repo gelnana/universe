@@ -6,7 +6,7 @@
   nixos = {
     config,
     pkgs,
-    self',
+    self,
     ...
   }: {
     persist.storage.directories = ["/var/lib/tailscale"];
@@ -17,7 +17,7 @@
     };
 
     age.secrets.tailscale-auth = {
-      rekeyFile = self' + "/secrets/master/tailscale-auth.age";
+      rekeyFile = self + "/secrets/master/tailscale-auth.age";
       mode = "0400";
       owner = "root";
     };

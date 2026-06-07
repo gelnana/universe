@@ -1,12 +1,11 @@
 {lib, ...}: {
   nixos,
-  hardware,
   name,
   settings,
   pkgs,
   modules,
 }:
-[nixos hardware]
+[nixos]
 ++ [
   {
     networking.hostName = name;

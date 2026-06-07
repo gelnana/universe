@@ -4,14 +4,14 @@
     config,
     meta,
     host,
-    self',
+    self,
     ...
   }: let
     svc = meta.meilisearch.${host.name};
     domain = meta.tailscale_domain;
   in {
     age.secrets.meilisearch-master-key = {
-      rekeyFile = self' + "/secrets/master/meilisearch-master-key.age";
+      rekeyFile = self + "/secrets/master/meilisearch-master-key.age";
       mode = "0400";
     };
 

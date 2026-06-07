@@ -4,6 +4,8 @@
     lib,
     ...
   }: {
+    hardware.amdgpu.opencl.enable = lib.mkDefault host.detect.amd;
+
     powerManagement = {
       cpuFreqGovernor = lib.mkDefault (
         if (host.tags.include ? workstation)

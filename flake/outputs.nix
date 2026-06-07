@@ -31,9 +31,9 @@
 
     # ☙🙤🙥- DISKO -🙧🙦❧
     diskoConfigurations =
-      config.flake.nixosConfigurations
-      |> lib.filterAttrs (_: cfg: cfg.config.device.disk.primary != null)
-      |> lib.mapAttrs (_: cfg: cfg.config.disko);
+      config.internal.hosts
+      |> lib.filterAttrs (_: cfg: cfg.settings.specs.disk != null)
+      |> lib.mapAttrs (name: _: config.flake.nixosConfigurations.${name}.config.disko);
 
     # ☙🙤🙥- COLMENA -🙧🙦❧
     colmenaHive = inputs.colmena.lib.makeHive ({

@@ -18,7 +18,7 @@
       "sd_mod"
     ];
     initrd.kernelModules = [];
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["kvm-amd" "framework_laptop"];
     extraModulePackages = [];
   };
 
@@ -26,7 +26,6 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-    framework.enableKmod = true;
     amdgpu.opencl.enable = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };

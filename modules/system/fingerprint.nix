@@ -1,12 +1,11 @@
 {
-  tags = [
-    "fingerprint"
-  ];
-
-  nixos = _: {
-    services.fprintd.enable = true;
-    security.pam.services.login.fprintAuth = true;
-
-    persist.storage.directories = ["/var/lib/fprint"];
+  nixos = {
+    host,
+    lib,
+    ...
+  }: {
+    services.fprintd.enable = host.detect.fingerprint;
+    security.pam.services.login.fprintAuth = host.detect.fingerprint;
+    persist.storage.directories = lib.optional host.detect.fingerprint "/var/lib/fprint";
   };
 }

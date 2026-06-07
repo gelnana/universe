@@ -2,12 +2,14 @@
   tags = ["impermanence"];
 
   nixos = {
+    host,
     inputs,
     config,
     lib,
     ...
   }: let
     cfg = config.persist;
+    volume = host.specs.disk.volume;
   in {
     imports = [inputs.impermanence.nixosModules.impermanence];
 
@@ -22,13 +24,13 @@
       boot.initrd.systemd.services.rollback-root = {
         description = "rollback btrfs root to blank snapshot";
         wantedBy = ["initrd.target"];
-        after = lib.optional (lib.hasPrefix "/dev/mapper/" config.device.disk.volume) "cryptsetup.target";
+        after = lib.optional (lib.hasPrefix "/dev/mapper/" volume) "cryptsetup.target";
         before = ["sysroot.mount"];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
           mkdir -p /tmp/rollback
-          mount ${config.device.disk.volume} -t btrfs -o subvol=/ /tmp/rollback
+          mount ${volume} -t btrfs -o subvol=/ /tmp/rollback
 
           if [ -e /tmp/rollback/@blank ]; then
             # delete nested subvolumes inside @, then @ itself

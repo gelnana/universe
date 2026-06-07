@@ -14,6 +14,7 @@
       pkgs.jackify
       inputs'.nix-gaming.packages.mo2installer
       pkgs.protontricks
+      pkgs.r2modman
     ];
   };
 }

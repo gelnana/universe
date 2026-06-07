@@ -2,7 +2,7 @@
   tags = ["pihole"];
   nixos = {
     config,
-    self',
+    self,
     meta,
     host,
     ...
@@ -16,7 +16,7 @@
     ];
 
     age.secrets.pihole-webpassword = {
-      rekeyFile = self' + "/secrets/master/pihole-webpassword.age";
+      rekeyFile = self + "/secrets/master/pihole-webpassword.age";
       mode = "0400";
     };
 

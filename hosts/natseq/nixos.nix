@@ -1,19 +1,4 @@
 _: {
-  device.disk = {
-    primary = "/dev/sda";
-    swap = "2G";
-    legacy = true;
-    extra = [
-      {
-        device = "/dev/sdb";
-        subvolumes = {
-          "@calibre".mountpoint = "/calibre";
-          "@shared".mountpoint = "/shared";
-        };
-      }
-    ];
-  };
-
   networking = {
     interfaces.ens18.ipv4.addresses = [
       {

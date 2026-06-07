@@ -44,8 +44,8 @@
       url = "github:oddlama/agenix-rekey";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # <https://github.com/nixos/nixos-hardware>
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # <https://github.com/nix-community/nixos-facter>
+    nixos-facter.url = "github:nix-community/nixos-facter";
     # <https://foo-dogsquared.github.io/nix-module-wrapper-manager-fds/wrapper-manager-fds/project-overview.html>
     wrapper-manager-fds.url = "github:foo-dogsquared/nix-module-wrapper-manager-fds";
 

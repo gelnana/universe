@@ -1,7 +1,6 @@
 {
   nixos = {
     inputs,
-    self',
     pkgs,
     ...
   }: {
@@ -13,7 +12,7 @@
         package = pkgs.lixPackageSets.latest.lix;
 
         # pin nixpkgs entry to flake input
-        registry.nixpkgs.flake = self'.inputs.nixpkgs;
+        registry.nixpkgs.flake = inputs.nixpkgs;
 
         # silences the voices; point NIX_PATH → nixpkgs.
         nixPath = ["nixpkgs=flake:nixpkgs"];

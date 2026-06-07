@@ -35,7 +35,7 @@
     mod = {
       pkgs,
       config,
-      self',
+      self,
       ...
     }: {
       users.groups = lib.mapAttrs (_: _: {}) (normal // daemons);
@@ -64,7 +64,7 @@
           lib.listToAttrs (map (s: {
               name = s;
               value = {
-                rekeyFile = self' + "/secrets/master/${s}.age";
+                rekeyFile = self + "/secrets/master/${s}.age";
                 owner = name;
                 mode = "0400";
               };

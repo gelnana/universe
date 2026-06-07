@@ -4,14 +4,14 @@
     lib,
     inputs,
     inputs',
-    self',
+    self,
     host,
     meta,
     ...
   }: let
     mkUserSecrets = name: _u: {
       "${name}-password" = {
-        rekeyFile = self' + "/secrets/master/users/${name}/pass.age";
+        rekeyFile = self + "/secrets/master/users/${name}/pass.age";
         mode = "0400";
         owner = "root";
       };
@@ -41,7 +41,7 @@
           inherit
             inputs
             inputs'
-            self'
+            self
             host
             meta
             ;

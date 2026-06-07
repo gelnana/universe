@@ -1,42 +1,7 @@
-{inputs, ...}: {
-  imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-  ];
-
-  hardware.amdgpu.opencl.enable = true;
-
+_: {
   boot.kernel.sysctl."vm.swappiness" = 10;
   boot.extraModprobeConfig = "options mt7921e disable_aspm=1";
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
-  device = {
-    disk = {
-      primary = "/dev/nvme0n1";
-      swap = "16G";
-      extra = [
-        {
-          device = "/dev/nvme1n1";
-          mountpoint = "/data";
-        }
-        {
-          device = "/dev/sda";
-          mountpoint = "/archive";
-        }
-      ];
-    };
-    monitors = [
-      {
-        name = "DP-3";
-        scale = 1.0;
-      }
-      {
-        # stub monitor
-        name = "HDMI-A-1";
-        enable = false;
-      }
-    ];
-  };
 
   systemd.tmpfiles.rules = [
     "d /data/games    0775 root users - -"

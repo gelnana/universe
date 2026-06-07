@@ -1,22 +1,23 @@
 {
-  tags = [
-    "bluetooth"
-  ];
+  tags = [];
 
-  nixos = {pkgs, ...}: {
-    persist.storage.directories = [
-      "/var/lib/bluetooth"
-    ];
-
-    environment.systemPackages = [pkgs.bluetui];
-
-    userspace.groups = ["bluetooth"];
-
+  nixos = {
+    host,
+    lib,
+    pkgs,
+    ...
+  }: let
+    on = host.detect.bluetooth;
+  in {
     hardware.bluetooth = {
-      enable = true;
+      enable = on;
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
+
+    persist.storage.directories = lib.optional on "/var/lib/bluetooth";
+    environment.systemPackages = lib.optional on pkgs.bluetui;
+    userspace.groups = lib.optional on "bluetooth";
 
     # temporary until fix lands in latest
     # boot.kernelPatches = [

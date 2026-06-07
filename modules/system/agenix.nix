@@ -5,7 +5,7 @@
     pkgs,
     host,
     meta,
-    self',
+    self,
     ...
   }: {
     imports = [
@@ -23,10 +23,10 @@
         ];
 
         rekey = {
-          masterIdentities = [(self' + "/secrets/yubikey.pub")];
+          masterIdentities = [(self + "/secrets/yubikey.pub")];
           hostPubkey = "ssh-ed25519 ${meta.hosts.${host.name}.host_pubkey}";
           storageMode = "local";
-          localStorageDir = self' + "/secrets/rekeyed/${host.name}";
+          localStorageDir = self + "/secrets/rekeyed/${host.name}";
         };
       };
     };

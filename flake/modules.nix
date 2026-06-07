@@ -3,22 +3,28 @@
   inputs,
   ...
 }: let
-  inherit (inputs.haumea.lib) load matchers loaders;
-  inherit (inputs.haumea.lib.transformers) liftDefault;
-  inherit (lib.my) utils builders;
+  inherit (inputs) haumea;
+  inherit (inputs.haumea.lib) matchers loaders;
+  inherit (lib.my) utils;
 in {
-  config.internal = let
+  config._module.args = let
     # ☙🙤🙥- MODULES -🙧🙦❧
-    modules = utils.mapLeaves (utils.validateModule config.systems) (load {
-      src = ../modules;
-      loader = [(matchers.nix loaders.scoped)];
-      transformer = liftDefault;
-      inputs = {inherit inputs lib;};
-    });
+    modules = let
+      modules' = haumea.lib.load {
+        src = ../modules;
+        loader = with haumea.lib; [(matchers.nix loaders.scoped)];
+        transformer = haumea.lib.transformers.liftDefault;
+        inputs = {inherit inputs lib;};
+      };
+    in
+      utils.mapLeaves (utils.validateModule config.systems) modules';
+
+    predicate = field: pkg: utils.extract field modules |> builtins.elem (lib.getName pkg);
   in {
     inherit modules;
-    tags = utils.index modules;
-    unfree.packages = utils.extract "unfree" modules;
-    select = builders.select modules;
+    nixcfg = {
+      allowUnfreePredicate = predicate "unfree";
+      allowInsecurePredicate = predicate "insecure";
+    };
   };
 }

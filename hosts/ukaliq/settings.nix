@@ -28,6 +28,33 @@ _: {
     # keep-sorted end
   ];
   system = "x86_64-linux";
+  specs = {
+    disk = {
+      primary = "/dev/nvme0n1";
+      swap = "16G";
+      extra = [
+        {
+          device = "/dev/nvme1n1";
+          mountpoint = "/data";
+        }
+        {
+          device = "/dev/sda";
+          mountpoint = "/archive";
+        }
+      ];
+    };
+    monitors = [
+      {
+        name = "DP-3";
+        scale = 1.0;
+      }
+      {
+        # stub monitor
+        name = "HDMI-A-1";
+        enable = false;
+      }
+    ];
+  };
   users = ["chloe"];
   deployment = {
     allowLocalDeployment = true;

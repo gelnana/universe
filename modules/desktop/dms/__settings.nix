@@ -35,7 +35,7 @@
       batterySuspendBehavior = 0;
 
       # fingerprint
-      enableFprint = host.tags.include ? fingerprint;
+      enableFprint = host.detect.fingerprint;
       maxFprintTries = 15;
 
       # u2f

@@ -20,28 +20,8 @@ in {
       default = "26.05";
     };
 
-    deployment = mkOption {
-      default = {};
-      type = t.submodule {
-        options = {
-          targetHost = mkOption {
-            type = t.nullOr t.nonEmptyStr;
-            default = null;
-          };
-          targetUser = mkOption {
-            type = t.nonEmptyStr;
-            default = "root";
-          };
-          targetPort = mkOption {
-            type = t.nullOr (t.ints.between 1 65535);
-            default = null;
-          };
-          allowLocalDeployment = mkOption {
-            type = t.bool;
-            default = false;
-          };
-        };
-      };
-    };
+    specs = lib.my.types.specs;
+
+    deployment = lib.my.types.deployment;
   };
 }

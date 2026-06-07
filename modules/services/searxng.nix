@@ -5,7 +5,7 @@
     config,
     meta,
     host,
-    self',
+    self,
     ...
   }: let
     svc = meta.searxng.${host.name};
@@ -13,7 +13,7 @@
     domain = meta.tailscale_domain;
   in {
     age.secrets.searxng-env = {
-      rekeyFile = self' + "/secrets/master/searxng-env.age";
+      rekeyFile = self + "/secrets/master/searxng-env.age";
       mode = "0400";
       owner = "searx";
     };

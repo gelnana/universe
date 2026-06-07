@@ -31,6 +31,10 @@ in
               type = t.listOf t.str;
               default = [];
             };
+            insecure = mkOption {
+              type = t.listOf t.str;
+              default = [];
+            };
           };
         };
       };

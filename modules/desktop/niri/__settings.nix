@@ -1,6 +1,6 @@
 {
   home = {
-    osConfig,
+    host,
     lib,
     ...
   }: {
@@ -14,7 +14,7 @@
               inherit (m) scale enable;
             };
           })
-          (osConfig.device.monitors or [])
+          host.specs.monitors
         );
 
         prefer-no-csd = true;
