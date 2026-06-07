@@ -29,6 +29,6 @@
       file:///mnt/natseq Shared
     '';
 
-    userspace.xdg.associations."inode/directory" = ["org.gnome.Nautilus.desktop"];
+    xdg.associations."inode/directory" = ["org.gnome.Nautilus.desktop"];
   };
 }

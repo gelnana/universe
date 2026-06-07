@@ -27,7 +27,7 @@
   in {
     home.packages = [tclip-share];
 
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "Mod+Shift+C";
         command = ["tclip-share"];

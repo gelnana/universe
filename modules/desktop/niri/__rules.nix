@@ -19,9 +19,9 @@
             shadow.enable = true;
           }
         ]
-        ++ config.userspace.window-rules;
+        ++ config.compositor.window-rules;
 
-      inherit (config.userspace) layer-rules;
+      inherit (config.compositor) layer-rules;
     };
   };
 }

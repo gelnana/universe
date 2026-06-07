@@ -40,7 +40,7 @@
     }: {
       users.groups = lib.mapAttrs (_: _: {}) (normal // daemons);
       users.users =
-        lib.mapAttrs (name: u: super.account name u pkgs config.userspace.groups) normal
+        lib.mapAttrs (name: u: super.account name u pkgs config.groups) normal
         // lib.mapAttrs (name: cfg: super.daemon name cfg pkgs []) daemons;
 
       # service specific directories to persist

@@ -16,28 +16,24 @@
     };
   };
 
-  home = {
-    config,
-    pkgs,
-    ...
-  }: {
+  home = {config, ...}: {
     stylix = {
       # ☙🙤🙥- CURSOR & ICONS -🙧🙦❧
       cursor = {
-        name = config.userspace.theme.cursor.name;
-        package = pkgs.${config.userspace.theme.cursor.package};
-        size = config.userspace.theme.cursor.size;
+        name = config.theme.cursor.name;
+        package = config.theme.cursor.package;
+        size = config.theme.cursor.size;
       };
       icons = {
         enable = true;
-        package = pkgs.${config.userspace.theme.icons.package};
-        light = config.userspace.theme.icons.name;
-        dark = config.userspace.theme.icons.name;
+        package = config.theme.icons.package;
+        light = config.theme.icons.name;
+        dark = config.theme.icons.name;
       };
 
       # ☙🙤🙥- OPACITY -🙧🙦❧
-      opacity.applications = config.userspace.theme.opacity;
-      opacity.terminal = config.userspace.theme.opacity;
+      opacity.applications = config.theme.opacity;
+      opacity.terminal = config.theme.opacity;
     };
   };
 }

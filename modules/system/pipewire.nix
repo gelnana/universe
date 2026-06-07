@@ -14,7 +14,7 @@
     };
     security.rtkit.enable = true;
 
-    userspace.groups = ["audio"];
+    groups = ["audio"];
   };
 
   home = {pkgs, ...}: {

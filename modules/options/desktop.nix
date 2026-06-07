@@ -4,7 +4,7 @@ let
 in {
   nixos = _: {
     options = {
-      userspace.groups = mkOption {
+      groups = mkOption {
         description = "user groups to collect";
         default = [];
         type = t.listOf t.str;

@@ -21,14 +21,14 @@
 
     home.sessionVariables.TERMINAL = "kitty";
 
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "Mod+Return";
         command = ["kitty"];
       }
     ];
 
-    userspace.window-rules = [
+    compositor.window-rules = [
       {
         matches = [{app-id = "^kitty$";}];
         default-window-height.proportion = 0.5;

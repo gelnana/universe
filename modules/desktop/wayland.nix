@@ -30,6 +30,6 @@
     ];
 
     services.accounts-daemon.enable = true;
-    userspace.groups = ["input" "video"];
+    groups = ["input" "video"];
   };
 }

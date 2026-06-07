@@ -13,6 +13,6 @@
     };
     environment.systemPackages = [pkgs.virtiofsd];
     programs.virt-manager.enable = true;
-    userspace.groups = ["libvirtd"];
+    groups = ["libvirtd"];
   };
 }

@@ -5,7 +5,7 @@
   ];
   nixos = _: {
     services.udisks2.enable = true;
-    userspace.groups = ["fuse"];
+    groups = ["fuse"];
   };
   home = _: {
     services.udiskie = {

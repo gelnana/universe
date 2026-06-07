@@ -26,7 +26,7 @@
       versioning = "trashcan";
     };
 
-    userspace.window-rules = [
+    compositor.window-rules = [
       {
         matches = [{app-id = "^zotero$";}];
         open-floating = true;

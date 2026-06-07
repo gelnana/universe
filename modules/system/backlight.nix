@@ -7,7 +7,7 @@
   };
 
   home = _: {
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "XF86MonBrightnessUp";
         command = ["brightnessctl" "set" "5%+"];

@@ -40,6 +40,6 @@
         "net.ipv4.tcp_congestion_control" = "bbr";
       };
     };
-    userspace.groups = ["networkmanager"];
+    groups = ["networkmanager"];
   };
 }

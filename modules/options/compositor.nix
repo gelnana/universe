@@ -3,7 +3,7 @@ let
   t = lib.types;
 in {
   home = _: {
-    options.userspace = {
+    options.compositor = {
       binds = mkOption {
         description = "compositor keybinds";
         default = [];

@@ -11,7 +11,7 @@
         usbManager.enable = true;
       };
     };
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "Mod+W";
         ipc = [

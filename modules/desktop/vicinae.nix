@@ -42,7 +42,7 @@
       ];
     };
 
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "Mod+D";
         command = [

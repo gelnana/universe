@@ -68,14 +68,14 @@
           "video/x-ms-wmv"
         ];
         associations = lib.mergeAttrsList [
-          config.userspace.xdg.associations
-          (lib.genAttrs browser (_: config.userspace.xdg.browser))
-          (lib.genAttrs torrent (_: config.userspace.xdg.torrent))
-          (lib.genAttrs text (_: config.userspace.xdg.text))
+          config.xdg.associations
+          (lib.genAttrs browser (_: config.xdg.browser))
+          (lib.genAttrs torrent (_: config.xdg.torrent))
+          (lib.genAttrs text (_: config.xdg.text))
 
-          (lib.genAttrs audio (_: config.userspace.xdg.audio))
-          (lib.genAttrs image (_: config.userspace.xdg.image))
-          (lib.genAttrs video (_: config.userspace.xdg.video))
+          (lib.genAttrs audio (_: config.xdg.audio))
+          (lib.genAttrs image (_: config.xdg.image))
+          (lib.genAttrs video (_: config.xdg.video))
         ];
       in {
         enable = true;

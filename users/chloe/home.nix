@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs',
+  pkgs,
+  ...
+}: {
   home.packages = [
     pkgs.zathura
     # pkgs.libreoffice-fresh
@@ -7,17 +11,20 @@
     pkgs.aria2
   ];
 
-  userspace = {
-    # preferred applications
-    xdg = {
-      associations."application/pdf" = ["org.pwmt.zathura.desktop"];
-      browser = ["zen-beta.desktop"];
-      audio = ["mpv.desktop"];
-      video = ["mpv.desktop"];
-      text = ["Helix.desktop"];
-      image = ["imv-dir.desktop"];
-      torrent = ["org.qbittorrent.qBittorrent.desktop"];
-    };
+  theme.font = {
+    package = inputs'.apple-fonts.packages.sf-mono-nerd;
+    name = "SFMono Nerd Font";
+  };
+
+  # preferred applications
+  xdg = {
+    associations."application/pdf" = ["org.pwmt.zathura.desktop"];
+    browser = ["zen-beta.desktop"];
+    audio = ["mpv.desktop"];
+    video = ["mpv.desktop"];
+    text = ["Helix.desktop"];
+    image = ["imv-dir.desktop"];
+    torrent = ["org.qbittorrent.qBittorrent.desktop"];
   };
 
   # folders to sync across hosts

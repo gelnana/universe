@@ -212,7 +212,7 @@
           then builtins.foldl' (f: f) dms-ipc b.ipc
           else builtins.foldl' (f: f) acts.spawn b.command;
       })
-      config.userspace.binds;
+      config.compositor.binds;
   in {
     programs.niri.settings.binds = lib.listToAttrs (
       map (x: {

@@ -36,7 +36,7 @@
 
     programs.dank-material-shell.enable = true;
 
-    userspace.binds = [
+    compositor.binds = [
       {
         key = "XF86AudioRaiseVolume";
         ipc = ["audio" "increment" "5"];
@@ -51,7 +51,7 @@
       }
     ];
 
-    userspace = {
+    compositor = {
       window-rules = [
         {
           matches = [{app-id = "org.quickshell";}];

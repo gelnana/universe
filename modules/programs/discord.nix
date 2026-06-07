@@ -99,6 +99,6 @@
       };
     };
 
-    userspace.xdg.associations."x-scheme-handler/discord" = ["vesktop.desktop"];
+    xdg.associations."x-scheme-handler/discord" = ["vesktop.desktop"];
   };
 }

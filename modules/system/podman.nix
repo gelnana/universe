@@ -25,6 +25,6 @@
       pkgs.docker-compose
     ];
 
-    userspace.groups = ["podman"];
+    groups = ["podman"];
   };
 }

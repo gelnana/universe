@@ -13,7 +13,7 @@
 
     persist.storage.directories = lib.optional host.detect.bluetooth "/var/lib/bluetooth";
     environment.systemPackages = lib.optional host.detect.bluetooth pkgs.bluetui;
-    userspace.groups = lib.optional host.detect.bluetooth "bluetooth";
+    groups = lib.optional host.detect.bluetooth "bluetooth";
 
     # temporary until fix lands in latest
     # boot.kernelPatches = [

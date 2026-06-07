@@ -59,7 +59,7 @@
       };
     };
 
-    userspace = {
+    compositor = {
       binds = [
         {
           key = "Mod+B";

@@ -2,8 +2,8 @@ let
   inherit (lib) mkOption;
   t = lib.types;
 in {
-  home = _: {
-    options.userspace.theme = mkOption {
+  home = {pkgs, ...}: {
+    options.theme = mkOption {
       default = {};
       type = t.submodule {
         options = {
@@ -32,6 +32,10 @@ in {
                   type = t.number;
                   default = 12.0;
                 };
+                package = mkOption {
+                  type = t.package;
+                  default = pkgs.nerd-fonts.fira-code;
+                };
               };
             };
           };
@@ -49,8 +53,8 @@ in {
                   default = 24;
                 };
                 package = mkOption {
-                  type = t.str;
-                  default = "capitaine-cursors";
+                  type = t.package;
+                  default = pkgs.capitaine-cursors;
                 };
               };
             };
@@ -65,8 +69,8 @@ in {
                   default = "Tela";
                 };
                 package = mkOption {
-                  type = t.str;
-                  default = "tela-icon-theme";
+                  type = t.package;
+                  default = pkgs.tela-icon-theme;
                 };
               };
             };

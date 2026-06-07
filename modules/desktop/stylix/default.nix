@@ -33,15 +33,19 @@
     pkgs,
     ...
   }: {
-    imports = [inputs.stylix.homeModules.stylix];
+    imports = [
+      inputs.stylix.homeModules.stylix
+      super.gtk.home
+      super.fonts.home
+    ];
 
     stylix = {
       enable = true;
       overlays.enable = false;
 
       # ☙🙤🙥- PALETTE -🙧🙦❧
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/${config.userspace.theme.style}.yaml";
-      polarity = config.userspace.theme.polarity;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/${config.theme.style}.yaml";
+      polarity = config.theme.polarity;
     };
   };
 }
