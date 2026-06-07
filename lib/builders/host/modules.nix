@@ -1,12 +1,12 @@
 {lib, ...}: {
-  nixos,
+  local,
   name,
   settings,
   overlays,
   nixcfg,
   modules,
 }:
-[nixos]
+[local]
 ++ [
   {
     networking.hostName = name;
