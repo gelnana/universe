@@ -32,11 +32,13 @@
           {hardware.facter.reportPath = host.facter;}
           (super.detect specialArgs.host).facter
         ]
+        # if no facter.json, fall back to hardware.nix
         else lib.optional (host ? hardware) host.hardware
       );
   in {
     inherit settings specialArgs homes pkgs;
     nixosModules = super.modules {
+      # host-specific overrides
       inherit (host) local;
       inherit name settings overlays nixcfg;
       modules =
