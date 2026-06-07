@@ -2,7 +2,6 @@ _: {
   tags.include = [
     "workstation"
     # keep-sorted start
-    "bluetooth"
     "browser"
     "caddy"
     "calendar"
@@ -28,6 +27,7 @@ _: {
     # keep-sorted end
   ];
   system = "x86_64-linux";
+  users = ["chloe"];
   specs = {
     disk = {
       primary = "/dev/nvme0n1";
@@ -55,7 +55,6 @@ _: {
       }
     ];
   };
-  users = ["chloe"];
   deployment = {
     allowLocalDeployment = true;
     targetHost = "ukaliq.tail02b28f.ts.net";

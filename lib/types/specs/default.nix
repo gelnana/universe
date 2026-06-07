@@ -2,14 +2,17 @@
   super,
   lib,
   ...
-}:
-lib.mkOption {
-  default = {};
-  type = lib.types.submodule {
-    options = {
-      inherit (super) disk;
-      inherit (super) monitors;
-      inherit (super) detect;
+}: let
+  inherit (lib) mkOption;
+  t = lib.types;
+in
+  mkOption {
+    default = {};
+    type = t.submodule {
+      options = {
+        inherit (super) disk;
+        inherit (super) monitors;
+        inherit (super) detect;
+      };
     };
-  };
-}
+  }

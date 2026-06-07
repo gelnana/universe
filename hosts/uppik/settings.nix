@@ -3,11 +3,9 @@ _: {
     include = [
       "laptop"
       # keep-sorted start
-      "bluetooth"
       "browser"
       "calendar"
       "disko"
-      "fingerprint"
       "gaming"
       "impermanence"
       "kde-connect"
