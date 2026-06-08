@@ -1,8 +1,8 @@
 {
   tags = ["blender" "media" "all"];
-  nixos = {pkgs, ...}: {
-    environment.systemPackages = [
-      (pkgs.blender.override {
+  home = {pkgs, ...}: {
+    home.packages = [
+      (pkgs.unstable.blender.override {
         config.rocmSupport = true;
         config.cudaSupport = false;
       })

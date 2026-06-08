@@ -24,6 +24,7 @@ _: {
     ];
     exclude = [
       # keep-sorted start
+      "blender"
       "mangohud"
       "modding"
       "xivlauncher"

@@ -3,12 +3,10 @@
     pkgs,
     lib,
     ...
-  }: let
-    helix-pkg = pkgs.unstable.helix;
-  in {
+  }: {
     programs.helix = {
       enable = true;
-      package = helix-pkg;
+      package = pkgs.unstable.helix;
       extraPackages = with pkgs.unstable; [
         harper
         codebook
@@ -81,7 +79,7 @@
 
     xdg.desktopEntries.Helix = {
       name = "Helix";
-      exec = "${pkgs.kitty}/bin/kitty ${lib.getExe' helix-pkg "hx"}";
+      exec = "${pkgs.kitty}/bin/kitty ${lib.getExe' pkgs.unstable.helix "hx"}";
       icon = "helix";
       terminal = true;
       categories = [

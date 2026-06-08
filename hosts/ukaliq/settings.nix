@@ -2,6 +2,7 @@ _: {
   tags.include = [
     "workstation"
     # keep-sorted start
+    "blender"
     "browser"
     "caddy"
     "calendar"
