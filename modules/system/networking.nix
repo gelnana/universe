@@ -6,6 +6,8 @@
   }: {
     hardware.wirelessRegulatoryDatabase = true;
 
+    networking.nameservers = ["1.1.1.1"];
+
     networking.firewall = lib.mkIf (host.tags.include ? server) {
       enable = true;
       allowedTCPPorts = [2222];

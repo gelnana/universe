@@ -7,7 +7,9 @@
       mode = "0750";
     };
   };
+
   nixos = {
+    lib,
     meta,
     host,
     ...
@@ -22,7 +24,7 @@
 
     virtualisation.oci-containers.containers.calibre-web-automated = {
       image = "crocodilestick/calibre-web-automated:latest";
-      ports = ["127.0.0.1:${svc.port}:8083"];
+      ports = ["127.0.0.1:${toString svc.port}:8083"];
       extraOptions = ["--no-healthcheck"];
       volumes = [
         "/var/lib/calibre-web-automated:/config"
@@ -37,11 +39,7 @@
       };
     };
 
-    services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${svc.caddy_name}
-        reverse_proxy 127.0.0.1:${svc.port}
-      '';
-    };
+    networking.firewall.allowedTCPPorts = lib.optional (svc.local or false) svc.port;
+    services.caddy.virtualHosts = lib.my.services.vhost svc domain;
   };
 }

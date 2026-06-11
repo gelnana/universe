@@ -1,5 +1,6 @@
 {
   tags = ["pihole"];
+
   nixos = {
     config,
     self,
@@ -25,7 +26,7 @@
       environmentFiles = [config.age.secrets.pihole-webpassword.path];
       environment = {
         TZ = "America/Vancouver";
-        FTLCONF_webserver_port = "${svc.port}o";
+        FTLCONF_webserver_port = "${toString svc.port}o";
       };
       extraOptions = ["--network=host"];
       volumes = [
@@ -37,7 +38,7 @@
     services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
       extraConfig = ''
         bind tailscale/${svc.caddy_name}
-        reverse_proxy ${host.name}.${domain}:${svc.port}
+        reverse_proxy ${host.name}.${domain}:${toString svc.port}
       '';
     };
   };

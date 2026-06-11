@@ -1,5 +1,6 @@
 _: {
   tags = ["nfs"];
+
   nixos = {pkgs, ...}: {
     boot.supportedFilesystems = ["nfs4"];
     environment.systemPackages = [pkgs.nfs-utils];

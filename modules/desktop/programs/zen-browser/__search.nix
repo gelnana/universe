@@ -1,6 +1,6 @@
 {
-  home = _: {
-    programs.zen-browser.profiles.default.search = {
+  home = {user, ...}: {
+    programs.zen-browser.profiles.${user.name}.search = {
       force = true;
       default = "SearXNG";
       engines = {

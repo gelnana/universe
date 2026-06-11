@@ -19,6 +19,7 @@
   home = {
     pkgs,
     inputs,
+    user,
     ...
   }: {
     imports = [
@@ -29,7 +30,7 @@
       super.search.home
     ];
 
-    stylix.targets.zen-browser.profileNames = ["default"];
+    stylix.targets.zen-browser.profileNames = [user.name];
 
     programs.zen-browser = {
       enable = true;
@@ -42,7 +43,7 @@
         NewTabURL = "https://search.tail02b28f.ts.net";
       };
 
-      profiles.default = {
+      profiles.${user.name} = {
         isDefault = true;
 
         settings = {

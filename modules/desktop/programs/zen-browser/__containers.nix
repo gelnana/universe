@@ -1,6 +1,6 @@
 {
-  home = _: {
-    programs.zen-browser.profiles.default = {
+  home = {user, ...}: {
+    programs.zen-browser.profiles.${user.name} = {
       containersForce = false;
       containers = {
         personal = {

@@ -1,5 +1,6 @@
 {
   tags = ["niri"];
+
   nixos = {
     nix.settings = {
       extra-substituters = ["https://vicinae.cachix.org"];

@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = [
-    pkgs.zathura
     # pkgs.libreoffice-fresh
     pkgs.hunspell
     pkgs.qbittorrent
@@ -18,7 +17,6 @@
 
   # preferred applications
   xdg = {
-    associations."application/pdf" = ["org.pwmt.zathura.desktop"];
     browser = ["zen-beta.desktop"];
     audio = ["mpv.desktop"];
     video = ["mpv.desktop"];
@@ -31,6 +29,7 @@
   sync.folders = {
     Documents = "staggered";
     Projects = "staggered";
+    Sync = "staggered";
     Music = "trashcan";
     Pictures = "trashcan";
     Notes = {

@@ -24,6 +24,8 @@
 
     services.pass-secret-service.enable = true;
 
-    sync.folders.password-store.path = "~/.password-store";
+    sync.folders.password-store = {
+      path = "~/.password-store";
+    };
   };
 }

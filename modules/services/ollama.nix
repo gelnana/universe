@@ -1,6 +1,7 @@
 {
   tags = ["ollama"];
   daemons.ai.uid = 2003;
+
   nixos = {
     pkgs,
     lib,

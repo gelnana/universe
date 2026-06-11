@@ -13,6 +13,7 @@
     nixpkgs.hostPlatform = lib.mkDefault settings.system;
     nixpkgs.overlays = overlays;
     nixpkgs.config = lib.mkForce nixcfg;
+    system.stateVersion = settings.version;
   }
 ]
 ++ modules

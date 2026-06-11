@@ -28,16 +28,16 @@ users = ["chloe"]
 role = "client"
 
 [ollama.ukaliq]
-port = "11434"
+port = 11434
 
 [perplexica.ukaliq]
-port = "3500"
+port = 3500
 caddy_name = "ai"
 description = "Research assistant"
 icon = "perplexica"
 
 [calibre-web.natseq]
-port = "8083"
+port = 8083
 caddy_name = "books"
 description = "Ebook library"
 icon = "calibre-web"
@@ -45,13 +45,13 @@ icon = "calibre-web"
 [nfs.natseq]
 
 [radicale.natseq]
-port = "5232"
+port = 5232
 caddy_name = "calendar"
 description = "Calendar and contacts"
 icon = "radicale"
 
 [homepage.natseq]
-port = "8082"
+port = 8082
 caddy_name = "hub"
 
 [tclip.natseq]
@@ -60,31 +60,37 @@ description = "Paste service"
 icon = "tailscale"
 
 [pihole.sila]
-port = "8080"
+port = 8080
 caddy_name = "pihole"
 description = "DNS server and ad blocker"
 icon = "pihole"
 
 [meilisearch.natseq]
-port = "7700"
+port = 7700
 caddy_name = "meili"
 description = "Search index"
 icon = "meilisearch"
 
+[karakeep.natseq]
+port = 3001
+caddy_name = "bookmarks"
+description = "Bookmark manager"
+icon = "karakeep"
+
 [paperless-ngx.natseq]
-port = "28981"
+port = 28981
 caddy_name = "docs"
 description = "Document management"
 icon = "paperless-ngx"
 
 [searxng.natseq]
-port = "8888"
+port = 8888
 caddy_name = "search"
 description = "Search engine"
 icon = "searxng"
 
 [suwayomi.natseq]
-port = "4567"
+port = 4567
 caddy_name = "manga"
 description = "Manga reader"
 icon = "suwayomi"

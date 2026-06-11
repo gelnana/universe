@@ -1,6 +1,7 @@
 {
   tags = ["caddy"];
   daemons.caddy.uid = 239;
+
   nixos = {
     config,
     pkgs,
@@ -15,13 +16,6 @@
       owner = "caddy";
     };
 
-    systemd.services.caddy = {
-      after = ["agenix.service"];
-      wants = ["agenix.service"];
-      reloadIfChanged = false;
-      serviceConfig.EnvironmentFile = config.age.secrets.caddy-tailscale-auth.path;
-    };
-
     services.caddy = {
       enable = true;
       package = pkgs.caddy-plugins;
@@ -34,6 +28,13 @@
           protocols h1 h2
         }
       '';
+    };
+
+    systemd.services.caddy = {
+      after = ["agenix.service"];
+      wants = ["agenix.service"];
+      reloadIfChanged = false;
+      serviceConfig.EnvironmentFile = config.age.secrets.caddy-tailscale-auth.path;
     };
   };
 }

@@ -2,6 +2,7 @@ _: {
   tags.include = [
     "workstation"
     # keep-sorted start
+    "audio"
     "blender"
     "browser"
     "caddy"
@@ -12,6 +13,7 @@ _: {
     "kde-connect"
     "limine"
     "luks"
+    "newserv"
     "nfs"
     "niri"
     "ollama"

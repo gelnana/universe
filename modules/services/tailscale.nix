@@ -11,15 +11,15 @@
   }: {
     persist.storage.directories = ["/var/lib/tailscale"];
 
-    services.tailscale = {
-      enable = true;
-      permitCertUid = config.services.caddy.user;
-    };
-
     age.secrets.tailscale-auth = {
       rekeyFile = self + "/secrets/master/tailscale-auth.age";
       mode = "0400";
       owner = "root";
+    };
+
+    services.tailscale = {
+      enable = true;
+      permitCertUid = config.services.caddy.user;
     };
 
     networking.firewall = {

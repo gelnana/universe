@@ -3,6 +3,7 @@ _: {
     include = [
       "laptop"
       # keep-sorted start
+      "audio"
       "browser"
       "calendar"
       "disko"

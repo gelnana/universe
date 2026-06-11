@@ -4,16 +4,18 @@
   ];
 
   nixos = {
+    lib,
     meta,
     host,
     ...
   }: let
     domain = meta.tailscale_domain;
     hub = meta.homepage.${host.name};
+    siteMonitor = svc: "http://127.0.0.1:${toString svc.port}";
   in {
     services.homepage-dashboard = {
       enable = true;
-      listenPort = builtins.fromJSON hub.port;
+      listenPort = hub.port;
       allowedHosts = "${hub.caddy_name}.${domain}";
 
       widgets = [
@@ -55,7 +57,7 @@
                 href = "https://${meta.calibre-web.${host.name}.caddy_name}.${domain}";
                 description = meta.calibre-web.${host.name}.description;
                 icon = meta.calibre-web.${host.name}.icon;
-                siteMonitor = "http://127.0.0.1:${meta.calibre-web.${host.name}.port}";
+                siteMonitor = siteMonitor meta.calibre-web.${host.name};
               };
             }
             {
@@ -63,7 +65,7 @@
                 href = "https://${meta.suwayomi.${host.name}.caddy_name}.${domain}";
                 description = meta.suwayomi.${host.name}.description;
                 icon = meta.suwayomi.${host.name}.icon;
-                siteMonitor = "http://127.0.0.1:${meta.suwayomi.${host.name}.port}";
+                siteMonitor = siteMonitor meta.suwayomi.${host.name};
               };
             }
             {
@@ -71,7 +73,7 @@
                 href = "https://${meta.radicale.${host.name}.caddy_name}.${domain}";
                 description = meta.radicale.${host.name}.description;
                 icon = meta.radicale.${host.name}.icon;
-                siteMonitor = "http://127.0.0.1:${meta.radicale.${host.name}.port}";
+                siteMonitor = siteMonitor meta.radicale.${host.name};
               };
             }
             {
@@ -87,7 +89,7 @@
                 href = "https://${meta.searxng.${host.name}.caddy_name}.${domain}";
                 description = meta.searxng.${host.name}.description;
                 icon = meta.searxng.${host.name}.icon;
-                siteMonitor = "http://127.0.0.1:${meta.searxng.${host.name}.port}";
+                siteMonitor = siteMonitor meta.searxng.${host.name};
               };
             }
             {
@@ -95,7 +97,7 @@
                 href = "https://${meta.paperless-ngx.${host.name}.caddy_name}.${domain}";
                 description = meta.paperless-ngx.${host.name}.description;
                 icon = meta.paperless-ngx.${host.name}.icon;
-                siteMonitor = "http://127.0.0.1:${meta.paperless-ngx.${host.name}.port}";
+                siteMonitor = siteMonitor meta.paperless-ngx.${host.name};
               };
             }
             {
@@ -170,13 +172,7 @@
       ];
     };
 
-    services.caddy.virtualHosts."${hub.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${hub.caddy_name}
-        reverse_proxy 127.0.0.1:${hub.port}
-      '';
-    };
-
-    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [(builtins.fromJSON hub.port)];
+    networking.firewall.allowedTCPPorts = lib.optional (hub.local or false) hub.port;
+    services.caddy.virtualHosts = lib.my.services.vhost hub domain;
   };
 }

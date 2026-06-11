@@ -1,12 +1,18 @@
 {
-  home = {pkgs, ...}: {
-    programs.zen-browser.profiles.default = {
+  home = {
+    pkgs,
+    user,
+    ...
+  }: {
+    programs.zen-browser.profiles.${user.name} = {
       extensions.packages = with pkgs.firefox-addons; [
         # keep-sorted start
         browserpass
         clearurls
         enhanced-h264ify
+        floccus
         image-search-options
+        karakeep
         libkey-nomad
         tampermonkey
         ublock-origin

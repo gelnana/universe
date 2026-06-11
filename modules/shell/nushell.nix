@@ -1,5 +1,6 @@
 {
   tags = ["nushell"];
+
   home = {
     lib,
     pkgs,

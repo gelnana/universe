@@ -5,8 +5,10 @@
     dir.mode = "0700";
     secrets = ["google-client-id" "google-client-secret"];
   };
+
   nixos = {
     config,
+    lib,
     pkgs,
     meta,
     host,
@@ -18,17 +20,10 @@
     services.radicale = {
       enable = true;
       settings = {
-        server.hosts = ["127.0.0.1:${svc.port}"];
+        server.hosts = ["127.0.0.1:${toString svc.port}"];
         auth.type = "none";
         storage.filesystem_folder = "/var/lib/radicale/collections";
       };
-    };
-
-    services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${svc.caddy_name}
-        reverse_proxy 127.0.0.1:${svc.port}
-      '';
     };
 
     environment.etc."vdirsyncer/calendar.cfg" = {
@@ -52,7 +47,7 @@
 
         [storage radicale]
         type = "caldav"
-        url = "http://127.0.0.1:${svc.port}/"
+        url = "http://127.0.0.1:${toString svc.port}/"
         username = "radicale"
         password = "radicale"
       '';
@@ -76,5 +71,8 @@
         Persistent = true;
       };
     };
+
+    networking.firewall.allowedTCPPorts = lib.optional (svc.local or false) svc.port;
+    services.caddy.virtualHosts = lib.my.services.vhost svc domain;
   };
 }

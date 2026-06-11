@@ -5,6 +5,7 @@
     dir = {};
     secrets = ["tclip-auth"];
   };
+
   nixos = {
     config,
     pkgs,

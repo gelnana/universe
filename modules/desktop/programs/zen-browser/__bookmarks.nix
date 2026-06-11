@@ -2,6 +2,7 @@
   home = {
     lib,
     meta,
+    user,
     ...
   }: let
     domain = meta.tailscale_domain;
@@ -12,7 +13,7 @@
         (lib.catAttrs "caddy_name" (lib.attrValues per_host)))
       (lib.attrValues meta);
   in {
-    programs.zen-browser.profiles.default.bookmarks =
+    programs.zen-browser.profiles.${user.name}.bookmarks =
       map (name: {
         inherit name;
         keyword = name;

@@ -7,7 +7,9 @@
       mode = "0750";
     };
   };
+
   nixos = {
+    lib,
     meta,
     host,
     ...
@@ -25,7 +27,7 @@
       enable = true;
       settings.server = {
         ip = "127.0.0.1";
-        port = builtins.fromJSON svc.port;
+        inherit (svc) port;
 
         initialOpenInBrowserEnabled = false;
         systemTrayEnabled = false;
@@ -51,11 +53,7 @@
       };
     };
 
-    services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${svc.caddy_name}
-        reverse_proxy 127.0.0.1:${svc.port}
-      '';
-    };
+    networking.firewall.allowedTCPPorts = lib.optional (svc.local or false) svc.port;
+    services.caddy.virtualHosts = lib.my.services.vhost svc domain;
   };
 }

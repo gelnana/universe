@@ -8,17 +8,22 @@
       };
     };
 
-    environment.systemPackages = [
-      pkgs.sd
-      pkgs.eza
-      pkgs.ripgrep
-      pkgs.fd
-      pkgs.fzf
-      pkgs.zoxide
-      pkgs.jq
-      pkgs.yq
-      pkgs.tldr
-    ];
+    environment = {
+      systemPackages = [
+        pkgs.uutils-coreutils-noprefix
+        pkgs.sd
+        pkgs.eza
+        pkgs.ripgrep
+        pkgs.fd
+        pkgs.fzf
+        pkgs.zoxide
+        pkgs.jq
+        pkgs.yq
+        pkgs.tldr
+        pkgs.ast-grep
+      ];
+      shells = [pkgs.unstable.nushell];
+    };
   };
 
   home = {

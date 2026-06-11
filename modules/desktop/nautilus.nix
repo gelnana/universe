@@ -1,5 +1,6 @@
 {
   tags = ["niri"];
+
   nixos = {pkgs, ...}: {
     environment.systemPackages = [
       pkgs.imv

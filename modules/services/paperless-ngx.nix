@@ -1,7 +1,9 @@
 {
   tags = ["paperless-ngx"];
+
   nixos = {
     config,
+    lib,
     self,
     meta,
     host,
@@ -20,20 +22,14 @@
 
     services.paperless = {
       enable = true;
-      port = builtins.fromJSON svc.port;
+      inherit (svc) port;
       address = "127.0.0.1";
       domain = "${svc.caddy_name}.${domain}";
       passwordFile = config.age.secrets.paperless-admin-password.path;
       settings.PAPERLESS_OCR_OUTPUT_TYPE = "pdf";
     };
 
-    services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${svc.caddy_name}
-        reverse_proxy 127.0.0.1:${svc.port}
-      '';
-    };
-
-    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [(builtins.fromJSON svc.port)];
+    networking.firewall.allowedTCPPorts = lib.optional (svc.local or false) svc.port;
+    services.caddy.virtualHosts = lib.my.services.vhost svc domain;
   };
 }

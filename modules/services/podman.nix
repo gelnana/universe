@@ -2,6 +2,8 @@
   tags = ["podman"];
 
   nixos = {pkgs, ...}: {
+    groups = ["docker"];
+
     virtualisation.podman = {
       enable = true;
 
@@ -24,7 +26,5 @@
       pkgs.podman-tui
       pkgs.docker-compose
     ];
-
-    groups = ["podman"];
   };
 }

@@ -3,6 +3,7 @@
 
   nixos = {
     config,
+    lib,
     meta,
     host,
     self,
@@ -42,7 +43,7 @@
         };
 
         server = {
-          port = builtins.fromJSON svc.port;
+          inherit (svc) port;
           bind_address = "127.0.0.1";
           base_url = "https://${svc.caddy_name}.${domain}/";
           image_proxy = true;
@@ -66,7 +67,7 @@
           {
             name = "meilisearch";
             engine = "meilisearch";
-            url = "http://127.0.0.1:${meili.port}";
+            url = "http://127.0.0.1:${toString meili.port}";
             api_key = "$MEILI_MASTER_KEY";
             shortcut = "ms";
             categories = "general";
@@ -86,11 +87,7 @@
       };
     };
 
-    services.caddy.virtualHosts."${svc.caddy_name}.${domain}" = {
-      extraConfig = ''
-        bind tailscale/${svc.caddy_name}
-        reverse_proxy 127.0.0.1:${svc.port}
-      '';
-    };
+    networking.firewall.allowedTCPPorts = lib.optional (svc.local or false) svc.port;
+    services.caddy.virtualHosts = lib.my.services.vhost svc domain;
   };
 }

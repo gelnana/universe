@@ -39,7 +39,7 @@ in
       }: let
         # specialArgs for nixos module evaluation
         specialArgs = {
-          inherit inputs inputs' self self' meta;
+          inherit inputs inputs' self self' meta lib;
           # host settings + context for modules
           host =
             settings

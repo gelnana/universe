@@ -16,6 +16,7 @@
       pkgs.bottles
       pkgs.winetricks
       pkgs.cabextract
+      pkgs.winboat
     ];
   };
 }

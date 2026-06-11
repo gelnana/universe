@@ -1,5 +1,5 @@
-_: {
-  boot.kernel.sysctl."vm.swappiness" = 10;
+{lib, ...}: {
+  boot.kernel.sysctl."vm.swappiness" = lib.mkDefault 10;
   boot.extraModprobeConfig = "options mt7921e disable_aspm=1";
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
 

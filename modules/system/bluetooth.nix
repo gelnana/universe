@@ -5,15 +5,16 @@
     pkgs,
     ...
   }: {
+    persist.storage.directories = lib.optional host.detect.bluetooth "/var/lib/bluetooth";
+    groups = lib.optional host.detect.bluetooth "bluetooth";
+
     hardware.bluetooth = {
       enable = host.detect.bluetooth;
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
 
-    persist.storage.directories = lib.optional host.detect.bluetooth "/var/lib/bluetooth";
     environment.systemPackages = lib.optional host.detect.bluetooth pkgs.bluetui;
-    groups = lib.optional host.detect.bluetooth "bluetooth";
 
     # temporary until fix lands in latest
     # boot.kernelPatches = [

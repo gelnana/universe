@@ -1,5 +1,6 @@
 {
   tags = ["niri"];
+
   home = {
     lib,
     user,

@@ -1,5 +1,6 @@
 {
   tags = ["niri"];
+
   nixos = {
     config,
     lib,

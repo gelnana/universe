@@ -1,5 +1,6 @@
 {
   tags = ["postgresql"];
+
   nixos = {lib, ...}: {
     persist.storage.directories = [
       {

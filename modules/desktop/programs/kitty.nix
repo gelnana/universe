@@ -19,7 +19,13 @@
       };
     };
 
-    home.sessionVariables.TERMINAL = "kitty";
+    home = {
+      sessionVariables.TERMINAL = "kitty";
+      shellAliases = {
+        ssh = "kitty +kitten ssh";
+        icat = "kitty +kitten icat";
+      };
+    };
 
     compositor.binds = [
       {

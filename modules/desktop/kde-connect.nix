@@ -1,5 +1,6 @@
 {
   tags = ["kde-connect"];
+
   nixos = _: {
     programs.kdeconnect.enable = true;
   };

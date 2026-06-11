@@ -32,7 +32,7 @@
         theme = "charm";
         mcp-timeout = "15s";
         apis.ollama = {
-          base-url = "http://${isHost}:${meta.ollama.ukaliq.port}";
+          base-url = "http://${isHost}:${toString meta.ollama.ukaliq.port}";
           models = {
             "devstral:24b".max-input-chars = 100000;
             "qwen3:14b".max-input-chars = 100000;

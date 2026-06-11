@@ -7,6 +7,7 @@ _: {
     "disko"
     "homepage"
     "impermanence"
+    "karakeep"
     "meilisearch"
     "paperless-ngx"
     "podman"
